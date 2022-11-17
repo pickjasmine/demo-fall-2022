@@ -1,25 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
 
+import {movies} from "./movies";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <div>
+            {
+                movies.map((movie) => {
+                    return (
+                        <>
+                            <img src={movie.posterUrl} alt={movie.title}/>
+                            <p>{movie.title}</p>
+                            <p>{movie.rating}</p>
+                        </>
+                    )
+                })
+            }
+        </div>
+    );
 }
 
 export default App;
+/*
+{
+        "title": "The Shawshank Redemption",
+        "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+        "posterUrl": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+        "rating": 9.3,
+        "director": "Frank Darabont",
+        "releaseYear": 1994,
+        "categories": [
+            "drama"
+        ]
+    },
+ */
