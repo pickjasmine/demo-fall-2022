@@ -2,7 +2,15 @@ import './App.css';
 
 import {movies} from "./movies";
 
+import {useState} from "react";
+
 function App() {
+    // this is the useState hook
+    const [currentMovie, setCurrentMovie] = useState(null);
+    // useState is a function useState()
+    // useState returns an array of values
+    // the first value is the value you are saving
+    // the second value is the function to change the value that you are saving
 
     return (
         <div>
@@ -12,7 +20,9 @@ function App() {
                     <div className={"movie"}> is the same as <div className="movie">
                      */
                     return (
-                        <div className={"movie"} key={movie.title}>
+                        <div className="movie" key={movie.title} onClick={() => {
+                            setCurrentMovie(movie)
+                        }}>
                             <img src={movie.posterUrl} alt={movie.title}/>
                             <p>{movie.title}</p>
                             <p>{movie.rating}</p>
@@ -20,21 +30,22 @@ function App() {
                     )
                 })
             }
+
+            {/*    display the current movie saved in state  */}
+            {
+                currentMovie ?
+                    <div className={"movie"}>
+                        <img src={currentMovie.posterUrl} alt={currentMovie.title}/>
+                        <p>{currentMovie.title}</p>
+                        <p>{currentMovie.rating}</p>
+                        <p>{currentMovie.director}</p>
+                        <p>{currentMovie.releaseYear}</p>
+                        <p>{currentMovie.description}</p>
+                    </div>
+                    : <p>movie is not selected</p>
+            }
         </div>
     );
 }
 
 export default App;
-/*
-{
-        "title": "The Shawshank Redemption",
-        "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-        "posterUrl": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
-        "rating": 9.3,
-        "director": "Frank Darabont",
-        "releaseYear": 1994,
-        "categories": [
-            "drama"
-        ]
-    },
- */
