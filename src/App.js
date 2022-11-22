@@ -8,12 +8,15 @@ function App() {
         <div>
             {
                 movies.map((movie) => {
+                    /*
+                    <div className={"movie"}> is the same as <div className="movie">
+                     */
                     return (
-                        <>
+                        <div className={"movie"} key={movie.title}>
                             <img src={movie.posterUrl} alt={movie.title}/>
                             <p>{movie.title}</p>
                             <p>{movie.rating}</p>
-                        </>
+                        </div>
                     )
                 })
             }
