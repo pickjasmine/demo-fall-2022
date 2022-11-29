@@ -3,6 +3,8 @@ import './App.css';
 import {movies} from "./movies";
 
 import {useState} from "react";
+import MoviePreview from "./MoviePreview";
+import CurrentMovie from "./CurrentMovie";
 
 function App() {
     // this is the useState hook
@@ -19,31 +21,23 @@ function App() {
                     /*
                     <div className={"movie"}> is the same as <div className="movie">
                      */
+                    /*
+                    on the left side of your "attributes" is the name of the prop
+                    on the right side of your "attributes" is the value that you are passing into that component
+                     */
                     return (
-                        <div className="movie" key={movie.title} onClick={() => {
-                            setCurrentMovie(movie)
-                        }}>
-                            <img src={movie.posterUrl} alt={movie.title}/>
-                            <p>{movie.title}</p>
-                            <p>{movie.rating}</p>
-                        </div>
+                        <MoviePreview
+                            key={movie.title}
+                           film={movie}
+                            updateFilm={setCurrentMovie}
+                        ></MoviePreview>
                     )
                 })
             }
 
-            {/*    display the current movie saved in state  */}
-            {
-                currentMovie ?
-                    <div className={"movie"}>
-                        <img src={currentMovie.posterUrl} alt={currentMovie.title}/>
-                        <p>{currentMovie.title}</p>
-                        <p>{currentMovie.rating}</p>
-                        <p>{currentMovie.director}</p>
-                        <p>{currentMovie.releaseYear}</p>
-                        <p>{currentMovie.description}</p>
-                    </div>
-                    : <p>movie is not selected</p>
-            }
+           <CurrentMovie
+               currentMovie={currentMovie}
+           ></CurrentMovie>
         </div>
     );
 }
